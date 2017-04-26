@@ -5,9 +5,12 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var errorHandler = require('./middleware/error-handler')
-var error404 = require('./middleware/error404')
+var errorHandler = require('./middleware/error-handler');
+var error404 = require('./middleware/error404');
+
 var index = require('./routes/index');
+var registers = require('./routes/registers');
+var devices = require('./routes/devices');
 
 var app = express();
 
