@@ -6,9 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var errorHandler = require('./middleware/error-handler')
 var error404 = require('./middleware/error404')
-
 var index = require('./routes/index');
-var users = require('./routes/users');
 
 var app = express();
 
