@@ -6,7 +6,7 @@ module.exports = new Schema({
   password: { type: String, minlength: 1 }, // device password
   description: {type: String, default: 'An arduair device'}, // device description
   owner: { type: String, minlength: 1 }, // device owner
-  email: {String, set: v => v.toLowerCase()}, // owner email
+  email: {type: String, set: v => v.toLowerCase()}, // owner email
   network: String,
   networkpass: String,
   server: {type: String, default: 'arduair.herokuapp.com', set: v => v.toLowerCase()},
