@@ -5,8 +5,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "test": "mocha ./tests/**/* || true",
-    "watch": "npm test && npm start ",
-    "dev": "DEBUG=arduair2:* nodemon -x 'npm run watch'"
+    "dev": "DEBUG=arduair2:* nodemon -x 'mocha ./tests/**/* || true && node bin/www' --delay 1"
   },
   "dependencies": {
     "body-parser": "~1.17.1",
@@ -15,6 +14,7 @@
     "debug": "~2.6.3",
     "express": "~4.15.2",
     "jade": "~1.11.0",
+    "mongoose": "^4.9.6",
     "morgan": "~1.8.1",
     "serve-favicon": "~2.4.2"
   },
