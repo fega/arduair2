@@ -3,7 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "test": "mocha ./tests/**/* || true",
+    "watch": "npm test && npm start ",
+    "dev": "DEBUG=arduair2:* nodemon -x 'npm run watch'"
   },
   "dependencies": {
     "body-parser": "~1.17.1",
@@ -16,17 +19,15 @@
     "serve-favicon": "~2.4.2"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
     "eslint": "^3.19.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-node": "^4.2.2",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
-    "gulp": "^3.9.1",
-    "gulp-mocha": "^4.3.1",
-    "gulp-nodemon": "^2.2.1",
-    "gulp-plumber": "^1.1.0",
     "mocha": "^3.3.0",
-    "supertest": "^3.0.0"
+    "supertest": "^3.0.0",
+    "watch": "^1.0.2"
   }
 }
