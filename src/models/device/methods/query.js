@@ -1,6 +1,7 @@
 module.exports = async function (query = {}, options = undefined) {
   let devices
   let retrieve = ['device', 'owner', 'description']
+  let sort = {updatedAt: -1}
   /**
    * Response variables
    */
@@ -13,7 +14,7 @@ module.exports = async function (query = {}, options = undefined) {
    * get device list
    */
   try {
-    devices = await this.find(query, retrieve, options)
+    devices = await this.find(query, retrieve, options).sort(sort)
   } catch (e) {
     errors = e
     code = 500

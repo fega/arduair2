@@ -1,7 +1,7 @@
 module.exports = async function (query, options = undefined) {
   let device
   let retrieve = ['-pasword']
-  let sort = {updatedAt: -1}
+
   /**
    * Response variables
    */
@@ -14,7 +14,7 @@ module.exports = async function (query, options = undefined) {
    * get device list
    */
   try {
-    device = await this.find(query, retrieve, options).sort(sort)
+    device = await this.find(query, retrieve, options)
   } catch (e) {
     errors = e
     code = 500
