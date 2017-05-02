@@ -4,13 +4,13 @@ var notImplemented = require('../middleware/not-implemented')
 var device = require('../models/device')
 
 /* GET all devices */
-router.get('/', device.query())
+router.get('/',notImplemented)
 
 /* GET one device */
 router.get('/:device', notImplemented)
 
 /* POST devices */
-router.post('/', device.insert())
+router.post('/', notImplemented)
 
 /* Update device */
 router.put('/:device', notImplemented)
