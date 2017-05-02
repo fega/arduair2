@@ -8,8 +8,8 @@
     "babel-node": "babel-node --presets=es2017 ",
     "build": "babel src -d dist --copy-files",
     "mocha": "mocha --compilers js:babel-register",
-    "test": "mocha --compilers js:babel-register --recursive ./src/test/ --timeout 10000 || true",
-    "testing": "nodemon --exec 'mocha --watch --compilers js:babel-register --recursive ./src/test/ --timeout 10000'"
+    "test": "mocha --compilers js:babel-register --recursive ./tests/**/* --timeout 10000 || true",
+    "testing": "nodemon --exec \" mocha --watch --compilers js:babel-register --recursive ./tests/ --timeout 10000 --reporter min\""
   },
   "dependencies": {
     "babel-cli": "^6.24.1",
