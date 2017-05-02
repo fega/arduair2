@@ -1,33 +1,21 @@
 var express = require('express')
 var router = express.Router()
 var notImplemented = require('../middleware/not-implemented')
-
-/* Disable route */
-router.use(notImplemented)
+var device = require('../models/device')
 
 /* GET all devices */
-router.get('/', (req, res) => {
-
-})
+router.get('/', device.query())
 
 /* GET one device */
-router.get('/:device', (req, res) => {
-
-})
+router.get('/:device', notImplemented)
 
 /* POST devices */
-router.post('/', (req, res) => {
-
-})
+router.post('/', device.insert())
 
 /* Update device */
-router.put('/:device', (req, res) => {
-
-})
+router.put('/:device', notImplemented)
 
 /* DELETE device */
-router.delete('/:device', (req, res) => {
-
-})
+router.delete('/:device', notImplemented)
 
 module.exports = router
