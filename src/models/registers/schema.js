@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 module.exports = new Schema({
   device: String,
-  d: {type: Date, default: null}, // array with measure dates
+  d: {type: Date, default: null, required: true}, // array with measure dates
   h: {type: Number, default: null}, // humidity in %
   t: {type: Number, default: null}, // temperature in °C
   p: {type: Number, default: null}, // presure in ¿¿mb??
