@@ -9,7 +9,7 @@ describe('/', () => {
       .get('/')
       .expect('Content-Type', /html/)
       .expect('Content-Type', /charset/)
-      //.expect('Server', /Arduair/)
+      // .expect('Server', /Arduair/)
       .expect(200)
       .expect(200, done)
     })

@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 module.exports = new Schema({
-  device: { type: String, maxlength: 8, minlength: 1 }, // device name
+  device: { type: String, maxlength: 10, minlength: 1 }, // device name
   password: { type: String, minlength: 1 }, // device password
   description: {type: String, default: 'An arduair device'}, // device description
   owner: { type: String, minlength: 1 }, // device owner

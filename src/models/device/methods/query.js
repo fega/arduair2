@@ -9,7 +9,6 @@ module.exports = async function (query = {}, options = undefined) {
   let code = 200
   let status = 'success'
   let message = `Devices retrieved`
-
   /**
    * get device list
    */
@@ -22,6 +21,5 @@ module.exports = async function (query = {}, options = undefined) {
     status = 'error'
     return {errors, code, message, status}
   }
-
   return {code, status, message, data: {devices}}
 }

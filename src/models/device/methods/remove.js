@@ -4,7 +4,7 @@ module.exports = async function (query) {
    * Response variables
    */
   let errors
-  let code = 201
+  let code = 200
   let status = 'success'
   let message = `Device ${query} deleted`
 
@@ -12,10 +12,10 @@ module.exports = async function (query) {
    * get device list
    */
   try {
-    device = await this.find(query)
+    device = await this.findOneAndRemove(query)
   } catch (e) {
     errors = e
-    code = 500
+    code = 400
     message = 'Error Querying the Database'
     status = 'error'
     return {errors, code, message, status}

@@ -1,6 +1,7 @@
-module.exports = async function (query, options = undefined) {
+module.exports = async function (query, options) {
+
   let device
-  let retrieve = ['-pasword']
+  let retrieve = ['-password']
 
   /**
    * Response variables
@@ -8,13 +9,13 @@ module.exports = async function (query, options = undefined) {
   let errors
   let code = 200
   let status = 'success'
-  let message = `Devices retrieved`
+  let message = `Device retrieved`
 
   /**
    * get device list
    */
   try {
-    device = await this.find(query, retrieve, options)
+    device = await this.findOne(query, retrieve, options)
   } catch (e) {
     errors = e
     code = 500
@@ -22,11 +23,11 @@ module.exports = async function (query, options = undefined) {
     status = 'error'
     return {errors, code, message, status}
   }
-
+  console.log(device)
   if (!device) {
     code = 404
     status = 'fail'
-    message = `Device ${query} not found`
+    message = `Device not found`
     return {code, status, message}
   }
 

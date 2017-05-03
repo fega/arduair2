@@ -1,8 +1,7 @@
-module.exports = async function (query) {
+module.exports = async function (query = {}) {
   let device
-  let name = query.name || undefined
+  let name
   let result
-
   /**
    * Response variables
    */
@@ -14,13 +13,13 @@ module.exports = async function (query) {
   /**
    * Missing device parameter
    */
-  if (name === undefined) {
+  if (query.device === undefined) {
     code = 400
     message = '"device" parameter is required'
     status = 'error'
     return {code, message, status}
   }
-
+  name = query.device
   /**
    * Search a DB
    */
@@ -48,13 +47,14 @@ module.exports = async function (query) {
    * Create device
    */
   try {
-    result = this.create(query)
+    result = await this.create(query)
   } catch (e) {
-    errors = e
-    code = 500
+    errors = e.errors
+    code = 400
     message = 'Error saving the device'
     status = 'error'
     return {errors, code, message, status}
   }
+  result.password = ''
   return {code, message, status, data: {device: result}}
 }

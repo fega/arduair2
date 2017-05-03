@@ -1,13 +1,16 @@
 const mongoose = require('mongoose')
-mongoose.Promise = Promise
 let deviceSchema = require('./schema')
+mongoose.Promise = Promise
+let statics = deviceSchema.statics
+/**
+ * Schema Statics
+ */
 
-deviceSchema.statics = {
-  insert: require('./methods/insert'),
-  query: require('./methods/query'),
-  detail: require('./methods/detail'),
-  remove: require('./methods/remove')
-}
+statics.query = require('./methods/query')
+statics.insert = require('./methods/insert')
+statics.detail = require('./methods/detail')
+statics.remove = require('./methods/remove')
+statics.update = require('./methods/update')
 
 /**
  * Device database model

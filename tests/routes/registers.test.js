@@ -1,4 +1,4 @@
-/* eslint-env node, mocha */
+ /* eslint-env node, mocha */
 const request = require('supertest')
 const expect = require('chai').expect
 const app = require('../../src/app')
@@ -12,7 +12,7 @@ describe('/registers/:device', () => {
     it('Should not create a registry without device')
     it('Should not create a registry without device/pass match')
   })
-  describe('PUT PATCH DELETE /registers',function(done){
+  describe('PUT PATCH DELETE /registers', function (done) {
     it('Should send 501 not implemented')
-  });
+  })
 })
