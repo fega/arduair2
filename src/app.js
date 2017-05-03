@@ -15,7 +15,7 @@ var devices = require('./routes/devices')
 var configFiles = require('./routes/config-files')
 
 var app = express()
-mongoose.connect('mongodb://weak:weak@ds129610.mlab.com:29610/tester')
+mongoose.connect('mongodb://localhost/27017')
 app.use(compression())
    .use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
    .use(logger('dev'))
