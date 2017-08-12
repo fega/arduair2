@@ -1,6 +1,6 @@
 /* eslint-env node, mocha */
-const request = require('supertest')
-const app = require('../../src/app')
+const request = require('supertest');
+const app = require('../../src/app');
 
 describe('/', () => {
   describe('GET /', () => {
@@ -11,7 +11,7 @@ describe('/', () => {
       .expect('Content-Type', /charset/)
       // .expect('Server', /Arduair/)
       .expect(200)
-      .expect(200, done)
-    })
-  })
-})
+      .expect(200, done);
+    });
+  });
+});

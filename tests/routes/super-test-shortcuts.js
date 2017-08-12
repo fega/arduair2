@@ -3,59 +3,49 @@ const colors = require('colors')
 const request = require('supertest')
 /*eslint-enable*/
 
-let end = (done, text) => (err, res) => {
+const end = (done, text) => (err, res) => {
   if (err) {
-    console.log('RESULTADO'.yellow)
-    console.log(res.body)
-    return done(err)
+    return done(err);
   }
-  done()
-}
-let getJsonExpect = (app, route, expect) => {
-  return request(app)
+  console.log('RESULTADO'.yellow);
+  console.log(res.body);
+  done();
+};
+const getJsonExpect = (app, route, expect) => request(app)
   .get(route)
   .expect('Content-Type', /json/)
-  .expect(expect)
-}
-let postJsonExpect = (app, route, expect, data) => {
-  return request(app)
+  .expect(expect);
+const postJsonExpect = (app, route, expect, data) => request(app)
     .post(route)
     .type('json')
     .send(data)
     .set('Accept', /application\/json/)
     .expect('Content-Type', /json/)
-    .expect(expect)
-}
-let patchJsonExpect = (app, route, expect, data) => {
-  return request(app)
+    .expect(expect);
+const patchJsonExpect = (app, route, expect, data) => request(app)
     .patch(route)
     .type('json')
     .send(data)
     .set('Accept', /application\/json/)
     .expect('Content-Type', /json/)
-    .expect(expect)
-}
-let deleteJsonExpect = (app, route, expect) => {
-  return request(app)
+    .expect(expect);
+const deleteJsonExpect = (app, route, expect) => request(app)
     .del(route)
     .type('json')
     .set('Accept', /application\/json/)
     .expect('Content-Type', /json/)
-    .expect(expect)
-}
-let putJsonExpect = (app, route, expect, data) => {
-  return request(app)
+    .expect(expect);
+const putJsonExpect = (app, route, expect, data) => request(app)
     .put(route)
     .type('json')
     .set('Accept', /application\/json/)
     .expect('Content-Type', /json/)
-    .expect(expect)
-}
+    .expect(expect);
 module.exports = {
   end,
   getJsonExpect,
   postJsonExpect,
   patchJsonExpect,
   deleteJsonExpect,
-  putJsonExpect
-}
+  putJsonExpect,
+};

@@ -1,4 +1,4 @@
-/*//Arduair Service Worker
+/* //Arduair Service Worker
 //Cache Version
 
 
@@ -109,4 +109,4 @@ self.addEventListener('fetch', function(event) {
       });
     })
   );
-});*/
+}); */

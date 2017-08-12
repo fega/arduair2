@@ -1,7 +1,8 @@
 module.exports = {
-    "extends": "standard",
-    "plugins": [
-        "standard",
-        "promise"
-    ]
+    "extends": "airbnb",
+    "env":{
+      "node":true
+    },
+    "globals": {
+    }
 };

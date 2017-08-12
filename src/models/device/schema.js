@@ -1,16 +1,37 @@
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
+const mongoose = require('mongoose');
+
+const Schema = mongoose.Schema;
 
 module.exports = new Schema({
-  device: { type: String, maxlength: 10, minlength: 1 }, // device name
-  password: { type: String, minlength: 1 }, // device password
-  description: {type: String, default: 'An arduair device'}, // device description
-  owner: { type: String, minlength: 1 }, // device owner
-  email: {type: String, set: v => v.toLowerCase()}, // owner email
+  device: {
+    type: String,
+    maxlength: [10, 'device name should have less than 10 characters'],
+    minlength: 1,
+    required: [true, 'Device name is required'] }, // device name
+  password: {
+    type: String,
+    minlength: 1,
+    maxlength: 10,
+    required: true }, // device password
+  description: {
+    type: String,
+    default: 'An arduair device' }, // device description
+  owner: {
+    type: String,
+    minlength: 1,
+    required: true }, // device owner
+  email: {
+    type: String,
+    set: v => v.toLowerCase(),
+    match: [
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+      'invalid email',
+    ],
+    required: true }, // owner email
   network: String,
   networkpass: String,
-  server: {type: String, default: 'arduair.herokuapp.com', set: v => v.toLowerCase()},
-  resetclock: {type: Boolean, default: false},
+  server: { type: String, default: 'arduair.herokuapp.com', set: v => v.toLowerCase() },
+  resetclock: { type: Boolean, default: false },
   year: Number,
   month: Number,
   day: Number,
@@ -42,7 +63,7 @@ module.exports = new Schema({
   t_x1: Number,
   t_b: Number,
   l_x1: Number,
-  l_b: Number
+  l_b: Number,
 }, {
-  timestamps: true
-})
+  timestamps: true,
+});

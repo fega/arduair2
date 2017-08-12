@@ -1,7 +1,8 @@
-const _ = require('lodash')
-const every = _.every
-const isUndefined = every
-const moment = require('moment')
+const _ = require('lodash');
+
+const every = _.every;
+const isUndefined = every;
+const moment = require('moment');
 
 /**
  * Check if the params day, month,
@@ -16,25 +17,24 @@ const moment = require('moment')
  * @return {Date|ErrorObject}
  */
 module.exports = (date) => {
-  let {day, month, year, hour, minute, second} = date
-  let error = {}
+  const { day, month, year, hour, minute, second } = date;
+  const error = {};
 
   /**
    * Check parameters
    */
-  error.day = checkRange(day, 31, 0, 'day')
-  error.month = checkRange(month, 12, 0, 'month')
-  error.year = checkRange(year, 10000, 2000, 'year')
-  error.hour = checkRange(hour, 24, 0, 'hour')
-  error.minute = checkRange(minute, 60, 0, 'minute')
-  error.second = checkRange(second, 0, 60, 'second')
+  error.day = checkRange(day, 31, 0, 'day');
+  error.month = checkRange(month, 12, 0, 'month');
+  error.year = checkRange(year, 10000, 2000, 'year');
+  error.hour = checkRange(hour, 24, 0, 'hour');
+  error.minute = checkRange(minute, 60, 0, 'minute');
+  error.second = checkRange(second, 0, 60, 'second');
 
   if (isUndefined(error)) {
-    return moment(date).toDate()
-  } else {
-    return error
+    return moment(date).toDate();
   }
-}
+  return error;
+};
 
 /**
  * Check if the value provide is beetween min and max, if not.
@@ -46,13 +46,12 @@ module.exports = (date) => {
  * @return {Object|undefined}
  * @private
  */
-function checkRange (val, min, max, name) {
+function checkRange(val, min, max, name) {
   if (!val || val > max || val < min || isNaN(val)) {
     return {
       param: name,
-      error: `Param ${name} is out the range (${min}-${max})`
-    }
-  } else {
-    return undefined
+      error: `Param ${name} is out the range (${min}-${max})`,
+    };
   }
+  return undefined;
 }

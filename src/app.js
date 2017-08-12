@@ -1,33 +1,32 @@
-var compression = require('compression')
-var express = require('express')
-var path = require('path')
-var favicon = require('serve-favicon')
-var logger = require('morgan')
-var cookieParser = require('cookie-parser')
-var bodyParser = require('body-parser')
-var errorHandler = require('./middleware/error-handler')
-var error404 = require('./middleware/error404')
-var mongoose = require('mongoose')
+const path = require('path');
+const logger = require('morgan');
+const config = require('config');
+const express = require('express');
+const mongoose = require('mongoose');
+const favicon = require('serve-favicon');
+const bodyParser = require('body-parser');
+const compression = require('compression');
+const error404 = require('./middleware/error404');
+const errorHandler = require('./middleware/error-handler');
 
-var index = require('./routes/index')
-var registers = require('./routes/registers')
-var devices = require('./routes/devices')
-var configFiles = require('./routes/config-files')
+const index = require('./routes/index');
+const records = require('./routes/records');
+const devices = require('./routes/devices');
+const configFiles = require('./routes/config-files');
 
-var app = express()
-mongoose.connect('mongodb://localhost/27017')
+const app = express();
+mongoose.connect(config.get('mongodb.uri'));
 app.use(compression())
    .use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
    .use(logger('dev'))
    .use(bodyParser.json())
    .use(bodyParser.urlencoded({ extended: false }))
-   .use(cookieParser())
    .use(express.static(path.join(__dirname, 'public')))
    .use('/', index)
-   .use('/api', registers)
+   .use('/devices', records)
    .use('/devices', devices)
    .use('/config-files', configFiles)
    .use(error404)
-   .use(errorHandler)
+   .use(errorHandler);
 
-module.exports = app
+module.exports = app;
