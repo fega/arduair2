@@ -17,6 +17,7 @@
     "nsp": "nsp check --output summary"
   },
   "dependencies": {
+    "aqi-plus": "^0.1.0",
     "babel-cli": "^6.24.1",
     "babel-preset-es2017": "^6.24.1",
     "body-parser": "~1.17.1",
@@ -28,6 +29,7 @@
     "jade": "~1.11.0",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
+    "moment-timezone": "^0.5.13",
     "mongoose": "^4.9.6",
     "morgan": "~1.8.1",
     "serve-favicon": "~2.4.2"

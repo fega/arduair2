@@ -29,7 +29,7 @@ const noPassDevice = {
 const updateDevice = {
   description: 'Awesome description',
 };
-describe.only('/devices', () => {
+describe('/devices', () => {
   describe('GET /devices', () => {
     it('Respond with JSON with devices', (done) => {
       getJsonExpect(app, '/devices', 200)
@@ -141,6 +141,7 @@ describe.only('/devices', () => {
 after(async () => {
   await mongoose.models.device.findOneAndRemove({ device: newDevice.device });
   await mongoose.models.device.findOneAndRemove({ device: noPassDevice.device });
+  await mongoose.models.record.remove({});
   mongoose.models = {};
   mongoose.modelSchemas = {};
   mongoose.connection.close();

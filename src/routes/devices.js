@@ -1,25 +1,15 @@
-const _ = require('lodash');
+const { get } = require('lodash');
 const express = require('express');
+const { error, asyncController } = require('../util');
 const Device = require('../models/device');
 const notImplemented = require('../middleware/not-implemented');
 
 const router = express.Router();
 
-const asyncController = asyncFn => (req, res, next) =>
-  Promise.resolve(asyncFn(req, res, next)).catch(next);
-const get = _.get;
-const error = (code, message, details) => {
-  const err = new Error(message);
-  err.status = code;
-  err.details = details;
-  throw err;
-};
-
 /* GET all devices */
 router.get('/', (req, res) => {
   Device.query()
   .then(devices => res.status(200).json({
-    code: 200,
     status: 'success',
     message: 'Devices retrieved',
     data: {

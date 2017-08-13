@@ -28,6 +28,12 @@ module.exports = new Schema({
       'invalid email',
     ],
     required: true }, // owner email
+  timezone: {
+    type: String,
+    default: 'UTC' },
+  removed: {
+    type: Boolean,
+    default: false },
   network: String,
   networkpass: String,
   server: { type: String, default: 'arduair.herokuapp.com', set: v => v.toLowerCase() },

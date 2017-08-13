@@ -1,26 +1,51 @@
 const express = require('express');
 
+const Device = require('../models/device');
+const Record = require('../models/records');
+const { error, asyncController } = require('../util');
+
 const router = express.Router();
 const notImplemented = require('../middleware/not-implemented');
 
 /* Disable route */
 
 /* GET all registers */
-router.get('/:deviceId/records', notImplemented);
+router.get('/:device/records', asyncController(async (req, res) => {
+  const { query } = req;
+  const { device } = req.params;
 
-/* GET one register */
-router.get('/:deviceId/records/:id', notImplemented);
+  if (await !Device.exist({ device })) error(404, 'Device not found');
+  const timezone = await Device.timezone({ device }) || 'UTC';
+
+  const records = await Record.search({ device }, { ...query, timezone });
+  if (records.length === 0) error(404, 'No records for this device');
+
+  res.status(200).json({
+    status: 'success',
+    data: { records },
+  });
+}));
+
 
 /* POST registers */
-router.post('/:deviceId/records', notImplemented);
+router.post('/:device/records', asyncController(async (req, res) => {
+  const { device } = req.params;
+  const { password } = req.body;
 
-/* POST registers */
-router.post('/:deviceId/postrecord', notImplemented);
+  await Device.validatePassword(device, password);
+  const record = await Record.create({ device, ...req.body });
 
-/* Update register */
+  res.status(200).json({
+    status: 'success',
+    data: {
+      record,
+    },
+  });
+}));
+
+/* not implemented */
 router.put('/:deviceId/records/:id', notImplemented);
-
-/* DELETE register */
 router.delete('/:deviceId/records/:id', notImplemented);
+router.get('/:deviceId/records/:id', notImplemented);
 
 module.exports = router;

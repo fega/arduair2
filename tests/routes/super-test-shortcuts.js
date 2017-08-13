@@ -3,7 +3,7 @@ const colors = require('colors')
 const request = require('supertest')
 /*eslint-enable*/
 
-const end = (done, text) => (err, res) => {
+const end = done => (err, res) => {
   console.log('RESULTADO'.yellow);
   console.log(JSON.stringify(res.body, null, 1).grey);
   if (err) {

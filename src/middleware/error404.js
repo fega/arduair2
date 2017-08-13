@@ -5,6 +5,8 @@ module.exports = (err, req, res, next) => {
 
   if (err.name === 'ValidationError') {
     res.status(400);
+  } else if (err.name === 'NotFoundError') {
+    res.status(404);
   } else {
     res.status(err.status || 500);
   }
@@ -13,5 +15,6 @@ module.exports = (err, req, res, next) => {
     status: 'error',
     message: err.message,
     details: err.details,
+    stack: err.stack,
   });
 };
