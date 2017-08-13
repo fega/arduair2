@@ -1,5 +1,5 @@
 const express = require('express');
-
+const moment = require('moment-timezone');
 const Device = require('../models/device');
 const Record = require('../models/records');
 const { error, asyncController } = require('../util');
@@ -42,7 +42,19 @@ router.post('/:device/records', asyncController(async (req, res) => {
     },
   });
 }));
+/* legacy arduair prototype endpoint */
 
+router.get('/api/:device/:password/:day/:month/:year/:hour/:minute', asyncController(async (req, res) => {
+  const { query } = req;
+  const { device, password, ...date } = req.params;
+
+  await Device.validatePassword(device, password);
+
+  const d = moment(date).toDate();
+  await Record.create({ device, ...query, ...d });
+
+  res.status(204).json();
+}));
 /* not implemented */
 router.put('/:deviceId/records/:id', notImplemented);
 router.delete('/:deviceId/records/:id', notImplemented);
