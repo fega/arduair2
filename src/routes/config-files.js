@@ -7,14 +7,10 @@ const notImplemented = require('../middleware/not-implemented');
 router.use(notImplemented);
 
 /* GET device config */
-router.get('/:device', (req, res) => {
-
-});
+router.get('/:device', notImplemented);
 
 /* Update device config */
-router.put('/:device', (req, res) => {
-
-});
+router.put('/:device', notImplemented);
 
 /* Disable all routes */
 router.use(notImplemented);

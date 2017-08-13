@@ -4,11 +4,11 @@ const request = require('supertest')
 /*eslint-enable*/
 
 const end = (done, text) => (err, res) => {
+  console.log('RESULTADO'.yellow);
+  console.log(JSON.stringify(res.body, null, 1).grey);
   if (err) {
     return done(err);
   }
-  console.log('RESULTADO'.yellow);
-  console.log(res.body);
   done();
 };
 const getJsonExpect = (app, route, expect) => request(app)
@@ -33,7 +33,6 @@ const deleteJsonExpect = (app, route, expect) => request(app)
     .del(route)
     .type('json')
     .set('Accept', /application\/json/)
-    .expect('Content-Type', /json/)
     .expect(expect);
 const putJsonExpect = (app, route, expect, data) => request(app)
     .put(route)

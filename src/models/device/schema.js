@@ -7,7 +7,7 @@ module.exports = new Schema({
     type: String,
     maxlength: [10, 'device name should have less than 10 characters'],
     minlength: 1,
-    required: [true, 'Device name is required'] }, // device name
+    required: true }, // device name
   password: {
     type: String,
     minlength: 1,
@@ -24,7 +24,7 @@ module.exports = new Schema({
     type: String,
     set: v => v.toLowerCase(),
     match: [
-      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
       'invalid email',
     ],
     required: true }, // owner email
